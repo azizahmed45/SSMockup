@@ -24,8 +24,7 @@ class MockupController extends Controller
         $request->validate([
             'name' => 'required',
             'mockupConfig' => 'required',
-            'image' => 'required',
-            'image.*' => 'mimes:png,jpeg,jpg',
+            'image' => 'required|mimes:png,jpeg,jpg',
         ]);
 
         DB::transaction(function () use ($request) {
