@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/mockup', \App\Http\Controllers\MockupController::class);
+
 Route::get('/test', function () {
 
 

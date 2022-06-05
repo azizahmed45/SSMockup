@@ -20,7 +20,7 @@ class Mockup extends Model
         return $this->hasMany(MockupFile::class);
     }
 
-    public function mockupConfig()
+    public function config()
     {
         return $this->hasOne(MockupConfig::class);
     }
