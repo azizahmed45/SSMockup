@@ -45,6 +45,8 @@ class MockupController extends Controller
             //save file from request
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();
+            //unique file name generate
+            $fileName = uniqid() . '_' . $fileName;
             $file->move(public_path('mockups'), $fileName);
 
             $mockup->mockupFiles()->save(new MockupFile([
@@ -52,5 +54,16 @@ class MockupController extends Controller
                 'path' => '/mockups/' . $fileName,
             ]));
         });
+    }
+
+    public function getAllMockups()
+    {
+        return  Mockup::query()->with(['mockupFiles', 'config'])->latest()->paginate(5);
+    }
+
+    public function downloadMockupFile(MockupFile $mockupFile)
+    {
+        $downloadFile = public_path($mockupFile->path);
+        return response()->download($downloadFile);
     }
 }

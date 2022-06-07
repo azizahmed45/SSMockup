@@ -9,6 +9,12 @@ class MockupFile extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $appends = ['url'];
+
+    public function getUrlAttribute()
+    {
+        return asset($this->path);
+    }
 
     public function mockup()
     {

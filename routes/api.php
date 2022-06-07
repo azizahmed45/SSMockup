@@ -18,4 +18,7 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
+Route::get('/getAllMockups', [\App\Http\Controllers\MockupController::class, 'getAllMockups']);
+Route::get('/downloadMockupFile/{mockupFile}', [\App\Http\Controllers\MockupController::class, 'downloadMockupFile']);
+
 Route::get('company/{company}/devices', [\App\Http\Controllers\DeviceCompanyController::class, 'getDevices'])->name('getDevicesByCompany');
